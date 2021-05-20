@@ -1,17 +1,17 @@
 <template>
   <div id="content">
-    <div class="groups" v-for="(group, index) of groups" :key="index">
+    <div class="groups" v-for="group of groups" :key="group.id">
       <div class="title">
-        <input type="text" :value="group.title" @keyup="updateTitle(index, $event)">
+        <input type="text" :value="group.title" @input="updateTitle(group.id, $event)">
       </div>
-      <ul v-for="(item, index) of group.list" :key="item.index">
+      <ul v-for="item of group.list" :key="item.id">
         <li><label>
-          <input type="checkbox" @input="deleteItem(index, $event)">
-          <input type="text" :value="item">
+          <input type="checkbox" :class="item.id" @input="deleteItem(group.id, item.id, $event)">
+          <input type="text" :class="item.id" :value="item.item" @input="updateItem(group.id, item.id, $event)">
         </label></li>
       </ul>
     </div>
-    {{groups[3]}}
+    {{groups[2]}}
   </div>
 </template>
 
@@ -30,18 +30,22 @@ export default {
     ])
   },
   methods: {
-    updateTitle (index, e) {
+    updateTitle (id, e) {
       const title = e.target.value
-      const pak = { index, title }
+      const pak = { id, title }
       this.$store.commit('updateTitle', pak)
-      e.target.blur()
     },
-    updateItem (e) {
-      this.$store.commit('updateItem', e.target.value)
-      e.target.blur()
+    deleteItem (idGroup, idItem, e) {
+      const pak = { idGroup, idItem }
+      setTimeout(() => {
+        this.$store.commit('deleteItem', pak)
+      }, 1500)
+      // const _item = document.getElementsByClassName('')
     },
-    deleteItem () {
-      console.log('aaa')
+    updateItem (idGroup, idItem, e) {
+      const item = e.target.value
+      const pak = { idGroup, idItem, item }
+      this.$store.commit('updateItem', pak)
     }
   }
 }
