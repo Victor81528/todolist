@@ -4,14 +4,19 @@
       <div class="title">
         <input type="text" :value="group.title" @input="updateTitle(group.id, $event)">
       </div>
-      <ul v-for="item of group.list" :key="item.id">
-        <li><label>
+      <ul>
+        <li v-for="item of group.list" :key="item.id"><label>
           <input type="checkbox" :class="item.id" @input="deleteItem(group.id, item.id, $event)">
           <input type="text" :class="item.id" :value="item.item" @input="updateItem(group.id, item.id, $event)">
+        </label></li>
+        <li><label>
+          <p><i class="fas fa-plus"></i></p>
+          <input type="text" @keypress.enter="addItem(group.id, $event)">
         </label></li>
       </ul>
     </div>
     {{groups[2]}}
+    {{groups[3]}}
   </div>
 </template>
 
@@ -39,13 +44,18 @@ export default {
       const pak = { idGroup, idItem }
       setTimeout(() => {
         this.$store.commit('deleteItem', pak)
-      }, 1500)
-      // const _item = document.getElementsByClassName('')
+      }, 500)
     },
     updateItem (idGroup, idItem, e) {
       const item = e.target.value
       const pak = { idGroup, idItem, item }
       this.$store.commit('updateItem', pak)
+    },
+    addItem (idGroup, e) {
+      const item = e.target.value
+      const pak = { idGroup, item }
+      if (item.length) this.$store.commit('addItem', pak)
+      e.target.value = ''
     }
   }
 }
@@ -62,7 +72,6 @@ export default {
     align-items: center;
     box-sizing: border-box;
     padding: 150px;
-    color: #161717;
     .groups {
       width: 25%;
       min-height: 250px;
@@ -71,23 +80,22 @@ export default {
       background-color: #FFFFFF;
       margin-right: 30px;
       padding: 48px;
+      &:hover {
+      }
       .title {
         display: flex;
         align-items: center;
         height: 80px;
-        font-family: Rubik-Medium;
-        label {
+        input {
+          font-family: 'Rubik', sans-serif;
+          font-weight: 500;
           width: 100%;
-          input {
-            width: 100%;
-            border: 0;
-            font-size: 36px;
-            line-height: 48px;
-          }
+          border: 0;
+          font-size: 36px;
+          line-height: 48px;
         }
       }
       ul {
-        font-family: Rubik-Regular;
         li {
           display: flex;
           align-items: center;
@@ -104,10 +112,10 @@ export default {
               border-radius: 12px;
               margin-right: 24px;
             }
-            label {
-              input {
-                border: 0;
-              }
+            input {
+              font-family: 'Rubik', sans-serif;
+              font-weight: 400;
+              border: 0;
             }
           }
         }

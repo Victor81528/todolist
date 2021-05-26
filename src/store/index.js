@@ -6,7 +6,7 @@ export default createStore({
     groups: [
       {
         id: 0,
-        title: 'Things to do',
+        title: 'Title 1',
         list: [
           {
             id: 0,
@@ -32,7 +32,7 @@ export default createStore({
       },
       {
         id: 1,
-        title: 'Things to do 2',
+        title: 'Title 2',
         list: [
           {
             id: 0,
@@ -46,7 +46,7 @@ export default createStore({
       },
       {
         id: 2,
-        title: 'Things to do 2',
+        title: 'Title 3',
         list: [
           {
             id: 0,
@@ -61,6 +61,10 @@ export default createStore({
     ]
   },
   mutations: {
+    addGroup (state) {
+      const lastId = state.groups[state.groups.length - 1].id
+      state.groups = [...state.groups, { id: lastId + 1, title: 'Title', list: [] }]
+    },
     updateBgMode (state, mode) {
       state.bgMode = mode
     },
@@ -95,8 +99,21 @@ export default createStore({
         if (state.groups[indexGroup].list[i].id === idItem) indexItem = i
       }
       state.groups[indexGroup].list[indexItem].item = item
+    },
+    addItem (state, pak) {
+      const { idGroup, item } = pak
+      let indexGroup = Number
+      for (let i = 0; i < state.groups.length; i++) {
+        if (state.groups[i].id === idGroup) indexGroup = i
+      }
+      const _thisList = state.groups[indexGroup].list
+      let _thisId = Number
+      if (_thisList.length === 0) {
+        _thisId = 0
+      } else {
+        _thisId = _thisList[state.groups[indexGroup].list.length - 1].id + 1
+      }
+      state.groups[indexGroup].list = [...state.groups[indexGroup].list, { id: _thisId, item: item }]
     }
-  },
-  actions: {
   }
 })

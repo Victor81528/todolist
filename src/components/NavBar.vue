@@ -29,6 +29,9 @@ export default {
     ])
   },
   methods: {
+    addGroup () {
+      this.$store.commit('addGroup')
+    },
     updateBgMode (e) {
       this.$store.commit('updateBgMode', e.target.value)
     }
@@ -40,5 +43,8 @@ export default {
 <style scoped lang="scss">
 #navBar {
   position: fixed;
+}
+button {
+  font-family: 'Rubik', sans-serif;
 }
 </style>
