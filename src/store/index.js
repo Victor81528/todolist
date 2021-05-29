@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    bgMode: 'mixed',
+    bgMode: 'mixed mode',
     groups: [
       {
         id: 0,
@@ -47,6 +47,7 @@ export default createStore({
       {
         id: 2,
         title: 'Title 3',
+        itemCache: '',
         list: [
           {
             id: 0,
@@ -62,8 +63,13 @@ export default createStore({
   },
   mutations: {
     addGroup (state) {
-      const lastId = state.groups[state.groups.length - 1].id
-      state.groups = [...state.groups, { id: lastId + 1, title: 'Title', list: [] }]
+      let _thisId = Number
+      if (state.groups.length === 0) {
+        _thisId = 0
+      } else {
+        _thisId = state.groups[state.groups.length - 1].id + 1
+      }
+      state.groups = [...state.groups, { id: _thisId, title: 'Title', itemCache: '', list: [] }]
     },
     updateBgMode (state, mode) {
       state.bgMode = mode
@@ -75,6 +81,13 @@ export default createStore({
         if (state.groups[i].id === id) indexGroup = i
       }
       state.groups[indexGroup].title = title
+    },
+    deleteGroup (state, idGroup) {
+      let indexGroup = Number
+      for (let i = 0; i < state.groups.length; i++) {
+        if (state.groups[i].id === idGroup) indexGroup = i
+      }
+      state.groups.splice(indexGroup, 1)
     },
     deleteItem (state, pak) {
       const { idGroup, idItem } = pak
@@ -100,8 +113,15 @@ export default createStore({
       }
       state.groups[indexGroup].list[indexItem].item = item
     },
-    addItem (state, pak) {
+    updateCache (state, pak) {
       const { idGroup, item } = pak
+      let indexGroup = Number
+      for (let i = 0; i < state.groups.length; i++) {
+        if (state.groups[i].id === idGroup) indexGroup = i
+      }
+      state.groups[indexGroup].itemCache = item
+    },
+    addItem (state, idGroup) {
       let indexGroup = Number
       for (let i = 0; i < state.groups.length; i++) {
         if (state.groups[i].id === idGroup) indexGroup = i
@@ -113,7 +133,8 @@ export default createStore({
       } else {
         _thisId = _thisList[state.groups[indexGroup].list.length - 1].id + 1
       }
-      state.groups[indexGroup].list = [...state.groups[indexGroup].list, { id: _thisId, item: item }]
+      state.groups[indexGroup].list = [...state.groups[indexGroup].list, { id: _thisId, item: state.groups[indexGroup].itemCache }]
+      state.groups[indexGroup].itemCache = ''
     }
   }
 })

@@ -17,6 +17,10 @@ export default {
     NavBar,
     Content
   },
+  data () {
+    return {
+    }
+  },
   computed: {
     ...mapState([
       'bgMode'
@@ -26,21 +30,12 @@ export default {
 </script>
 
 <style lang="scss">
-@font-face {
-  font-family: Rubik-Medium;
-  src: url('/src/assets/fonts/Rubik-Medium.ttf');
-}
-@font-face {
-  font-family: Rubik-Regular;
-  src: url('./assets/fonts/Rubik-Regular.ttf');
-}
 body {
   background-color: $bg-white;
 }
 #app {
   width: 100vw;
   min-height: 100vh;
-  background: $bg-black;
   background: linear-gradient(120deg, $bg-black 50%, $bg-white 50%);
   color: $p-color;
   &.dark {

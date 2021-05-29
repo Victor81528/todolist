@@ -4,7 +4,7 @@
       <nav>
         <button @click="addGroup">+ new group</button>
           <select @input="updateBgMode">
-            <option value="mixed">mixed mode</option>
+            <option value="mixed mode">mixed mode</option>
             <option value="dark">dark mode</option>
             <option value="light">light mode</option>
           </select>
@@ -20,7 +20,6 @@ export default {
   name: 'NavBar',
   data () {
     return {
-      aaa: 'mixed mode'
     }
   },
   computed: {
@@ -30,7 +29,11 @@ export default {
   },
   methods: {
     addGroup () {
-      this.$store.commit('addGroup')
+      if (this.$store.state.groups.length >= 3) {
+        alert('付費升級Pro版，以解鎖更多項目群組。')
+      } else {
+        this.$store.commit('addGroup')
+      }
     },
     updateBgMode (e) {
       this.$store.commit('updateBgMode', e.target.value)
