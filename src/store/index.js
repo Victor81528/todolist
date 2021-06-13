@@ -7,6 +7,7 @@ export default createStore({
       {
         id: 0,
         title: 'Title 1',
+        itemCache: '',
         list: [
           {
             id: 0,
@@ -29,35 +30,6 @@ export default createStore({
             item: 'another thing'
           }
         ]
-      },
-      {
-        id: 1,
-        title: 'Title 2',
-        list: [
-          {
-            id: 0,
-            item: 'haha'
-          },
-          {
-            id: 1,
-            item: 'go away'
-          }
-        ]
-      },
-      {
-        id: 2,
-        title: 'Title 3',
-        itemCache: '',
-        list: [
-          {
-            id: 0,
-            item: 'haha'
-          },
-          {
-            id: 1,
-            item: 'go away'
-          }
-        ]
       }
     ]
   },
@@ -75,10 +47,10 @@ export default createStore({
       state.bgMode = mode
     },
     updateTitle (state, pak) {
-      const { id, title } = pak
+      const { idGroup, title } = pak
       let indexGroup = Number
       for (let i = 0; i < state.groups.length; i++) {
-        if (state.groups[i].id === id) indexGroup = i
+        if (state.groups[i].id === idGroup) indexGroup = i
       }
       state.groups[indexGroup].title = title
     },

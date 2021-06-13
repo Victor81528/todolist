@@ -2,12 +2,12 @@
   <div id="navBar">
     <header>
       <nav>
-        <button @click="addGroup">+ new group</button>
-          <select @input="updateBgMode">
-            <option value="mixed mode">mixed mode</option>
-            <option value="dark">dark mode</option>
-            <option value="light">light mode</option>
-          </select>
+        <select @input="updateBgMode">
+          <option value="mixed mode">mixed mode</option>
+          <option value="dark">dark mode</option>
+          <option value="light">light mode</option>
+        </select>
+        <button @click="addGroup"><i class="fas fa-plus"></i></button>
       </nav>
     </header>
   </div>
@@ -46,8 +46,40 @@ export default {
 <style scoped lang="scss">
 #navBar {
   position: fixed;
-}
-button {
-  font-family: 'Rubik', sans-serif;
+  width: 100%;
+  height: 50px;
+  z-index: 5;
+  background-color: rgb(97, 97, 97);
+  header {
+    width: 100%;
+    height: 100%;
+    nav {
+      width: 100%;
+      height: 100%;
+      select {
+      }
+      button {
+        position: absolute;
+        right: 10px;
+        bottom: -40px;
+        width: 60px;
+        height: 60px;
+        font-family: 'Rubik', sans-serif;
+        background-color: rgb(97, 97, 97);
+        border: 3px solid $bg-white;
+        border-radius: 50%;
+        &:hover {
+
+        }
+        .fa-plus {
+          font-size: 28px;
+          font-weight: 1200;
+          color: $bg-white;
+          &:hover {
+          }
+        }
+      }
+    }
+  }
 }
 </style>

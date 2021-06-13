@@ -1,18 +1,26 @@
 <template>
   <div id="content">
     <div class="groups" v-for="group of groups" :key="group.id">
-      <button @click="deleteGroup(group.id)"><i class="fas fa-times-circle"></i></button>
+      <button id="btnDelet" @click="deleteGroup(group.id)">
+        <i class="fas fa-times-circle"></i>
+      </button>
       <div class="title">
         <input type="text" :value="group.title" @input="updateTitle(group.id, $event)">
+        {{group.title}}
       </div>
       <ul>
-        <li v-for="item of group.list" :key="item.id"><label>
-          <input type="checkbox" :class="item.id" @input="deleteItem(group.id, item.id)">
-          <input type="text" :class="item.id" :value="item.item" @input="updateItem(group.id, item.id, $event)">
-        </label></li>
-        <li><label>
-          <input type="text" :value="group.itemCache" @blur="addItem(group.id, $event)" @input="updateCache(group.id, $event)" @keypress.enter="addItem(group.id, $event)">
-        </label></li>
+        <li class="items" v-for="item of group.list" :key="item.id">
+          <label>
+            <input type="checkbox" class="itemCheckbox" :class="item.id" @input="deleteItem(group.id, item.id)">
+            <span class="checkMark"></span>
+            <input type="text" class="itemInput" :class="item.id" :value="item.item" @input="updateItem(group.id, item.id, $event)">
+          </label>
+        </li>
+        <li class="newItem">
+          <label>
+            <input type="text" :value="group.itemCache" @input="updateCache(group.id, $event)" @keypress.enter="addItem(group.id, $event)" @blur="addItem(group.id, $event)">
+          </label>
+        </li>
       </ul>
     </div>
   </div>
@@ -59,7 +67,6 @@ export default {
     },
     addItem (idGroup, e) {
       if (e.target.value) this.$store.commit('addItem', idGroup)
-      blur()
     }
   }
 }
@@ -78,7 +85,7 @@ export default {
     padding: 150px;
     .groups {
       position: relative;
-      width: 25%;
+      width: 549px;
       min-height: 250px;
       box-sizing: border-box;
       border-radius: 16px;
@@ -86,16 +93,21 @@ export default {
       margin-right: 30px;
       padding: 48px;
       &:hover {
-        button {
+        #btnDelet {
           display: block;
           position: absolute;
-          right: 0;
-          top: 0;
+          right: 18px;
+          top: 18px;
+          box-sizing: border-box;
           background-color: inherit;
           border: none;
+          .fa-times-circle {
+            font-size: 30px;
+            color: $bg-black;
+          }
         }
       }
-      button {
+      #btnDelet {
         display: none;
       }
       .title {
@@ -112,7 +124,7 @@ export default {
         }
       }
       ul {
-        li {
+        li.items{
           display: flex;
           align-items: center;
           height: 80px;
@@ -121,18 +133,50 @@ export default {
             flex-flow: nowrap row;
             justify-content: flex-start;
             align-items: center;
-            input {
+            input.itemCheckbox {
+              position: absolute;
+              opacity: 0;
+              cursor: pointer;
+              height: 0;
+              width: 0;
+              &:checked {
+                span.checkMark {
+                  background-color: blue;
+                }
+              }
+            }
+            span.checkMark {
               width: 48px;
               height: 48px;
               border: 3px solid #B4B4B4;
               border-radius: 12px;
               margin-right: 24px;
+              &:hover {
+                background-color: #B4B4B4;
+              }
+              &:after {
+                left: 9px;
+                top: 5px;
+                width: 5px;
+                height: 10px;
+                border: solid black;
+                border-width: 0 3px 3px 0;
+                -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+              }
             }
-            input {
+            input.itemInput {
               font-family: 'Rubik', sans-serif;
+              font-size: 32px;
               font-weight: 400;
               border: 0;
             }
+          }
+        }
+        .newItem {
+          input {
+            border: 0;
           }
         }
       }
