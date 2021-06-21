@@ -2,12 +2,15 @@
   <div id="navBar">
     <header>
       <nav>
-        <select @input="updateBgMode">
-          <option value="mixed mode">mixed mode</option>
-          <option value="dark">dark mode</option>
-          <option value="light">light mode</option>
-        </select>
-        <button @click="addGroup"><i class="fas fa-plus"></i></button>
+        <div class="bgMode">
+          <button id="openOptions" @click="openOption">{{bgMode}}</button>
+          <div class="options" :class="{'isOpen': open}">
+            <button class="option" @click="updateBgMode('mixed')">Mixed</button>
+            <button class="option" @click="updateBgMode('dark')">Dark Mode</button>
+            <button class="option" @click="updateBgMode('light')">Light Mode</button>
+          </div>
+        </div>
+        <button id="addGroup" @click="addGroup"><i class="fas fa-plus"></i></button>
       </nav>
     </header>
   </div>
@@ -20,6 +23,7 @@ export default {
   name: 'NavBar',
   data () {
     return {
+      open: false
     }
   },
   computed: {
@@ -35,9 +39,16 @@ export default {
         this.$store.commit('addGroup')
       }
     },
-    updateBgMode (e) {
-      this.$store.commit('updateBgMode', e.target.value)
+    openOption () {
+      this.open = !this.open
+    },
+    updateBgMode (mode) {
+      this.$store.commit('updateBgMode', mode)
+      this.open = false
     }
+    // updateBgMode (e) {
+    //   this.$store.commit('updateBgMode', e.target.value)
+    // }
   }
 }
 </script>
@@ -54,11 +65,44 @@ export default {
     width: 100%;
     height: 100%;
     nav {
+      display: flex;
       width: 100%;
       height: 100%;
-      select {
+      justify-content: flex-start;
+      align-items: center;
+      .bgMode {
+        position: relative;
+        height: 100%;
+        width: 100px;
+        button#openOptions {
+          width: 100%;
+          height: 100%;
+          color: $bg-white;
+          background-color: initial;
+          border: 0;
+          border-radius: 0;
+        }
+        .options {
+          display: none;
+        }
+        .isOpen {
+          display: flex;
+          position: absolute;
+          width: 100%;
+          flex-flow: nowrap column;
+          justify-content: flex-start;
+          border-top: 1px solid #161717;
+          button.option {
+            height: 50px;
+            background-color: rgb(97, 97, 97);
+            border: 0;
+            border-radius: 0;
+            border-bottom: 1px solid #161717;
+            color: $bg-white;
+          }
+        }
       }
-      button {
+      button#addGroup {
         position: absolute;
         right: 10px;
         bottom: -40px;

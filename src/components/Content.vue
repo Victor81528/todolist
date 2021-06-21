@@ -6,23 +6,23 @@
       </button>
       <div class="title">
         <input type="text" :value="group.title" @input="updateTitle(group.id, $event)">
-        {{group.title}}
       </div>
       <ul>
         <li class="items" v-for="item of group.list" :key="item.id">
           <label>
             <input type="checkbox" class="itemCheckbox" :class="item.id" @input="deleteItem(group.id, item.id)">
-            <span class="checkMark"></span>
+            <span class="checkMark"><i class="fas fa-check"></i></span>
             <input type="text" class="itemInput" :class="item.id" :value="item.item" @input="updateItem(group.id, item.id, $event)">
           </label>
         </li>
         <li class="newItem">
           <label>
-            <input type="text" :value="group.itemCache" @input="updateCache(group.id, $event)" @keypress.enter="addItem(group.id, $event)" @blur="addItem(group.id, $event)">
+            <input type="textarea" :value="group.itemCache" @input="updateCache(group.id, $event)" @keypress.enter="addItem(group.id, $event)" @blur="addItem(group.id, $event)">
           </label>
         </li>
       </ul>
     </div>
+    <!-- <textarea @input="this.rows=this.value.split('\n').length-1"></textarea> -->
   </div>
 </template>
 
@@ -92,6 +92,9 @@ export default {
       background-color: #FFFFFF;
       margin-right: 30px;
       padding: 48px;
+      #btnDelet {
+        display: none;
+      }
       &:hover {
         #btnDelet {
           display: block;
@@ -106,9 +109,6 @@ export default {
             color: $bg-black;
           }
         }
-      }
-      #btnDelet {
-        display: none;
       }
       .title {
         display: flex;
@@ -130,6 +130,7 @@ export default {
           height: 80px;
           label {
             display: flex;
+            position: relative;
             flex-flow: nowrap row;
             justify-content: flex-start;
             align-items: center;
@@ -140,14 +141,37 @@ export default {
               height: 0;
               width: 0;
               &:checked {
-                span.checkMark {
-                  background-color: blue;
+                ~ span.checkMark{
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  border: 0;
+                  background-color: #29ABE2;
+                  i.fa-check {
+                    display: inline;
+                    font-size: 32px;
+                    color: #FFFFFF;
+                  }
+                }
+                ~ span.checkMark:after{
+                  // display: block;
+                  // left: calc((48px - 27px) / 2);
+                  // top: calc((48px - 23px) / 2);
+                  // width: 12.5px;
+                  // height: 23px;
+                  // border: solid #FFFFFF;
+                  // border-width: 0 6px 6px 0;
+                  // transform: rotate(45deg);
+                }
+                ~ input.itemInput {
+                  text-decoration: line-through;
                 }
               }
             }
             span.checkMark {
               width: 48px;
               height: 48px;
+              box-sizing: border-box;
               border: 3px solid #B4B4B4;
               border-radius: 12px;
               margin-right: 24px;
@@ -155,15 +179,12 @@ export default {
                 background-color: #B4B4B4;
               }
               &:after {
-                left: 9px;
-                top: 5px;
-                width: 5px;
-                height: 10px;
-                border: solid black;
-                border-width: 0 3px 3px 0;
-                -webkit-transform: rotate(45deg);
-                -ms-transform: rotate(45deg);
-                transform: rotate(45deg);
+                display: none;
+                position: absolute;
+                content: "";
+              }
+              i.fa-check {
+                display: none;
               }
             }
             input.itemInput {
@@ -175,8 +196,27 @@ export default {
           }
         }
         .newItem {
-          input {
-            border: 0;
+          display: flex;
+          height: 80px;
+          justify-content: center;
+          align-items: center;
+          label {
+            display: flex;
+            height: 48px;
+            width: 100%;
+            align-items: center;
+            input {
+              width: 100%;
+              font-size: 32px;
+              background-color: $bg-white;
+              border: 0;
+              border-radius: 16px;
+              padding: {
+                left: 20px;
+                top: 7px;
+                bottom: 7px;
+              }
+            }
           }
         }
       }

@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    bgMode: 'mixed mode',
+    bgMode: 'mixed',
     groups: [
       {
         id: 0,
@@ -49,55 +49,55 @@ export default createStore({
     updateTitle (state, pak) {
       const { idGroup, title } = pak
       let indexGroup = Number
-      for (let i = 0; i < state.groups.length; i++) {
-        if (state.groups[i].id === idGroup) indexGroup = i
-      }
+      state.groups.forEach((element, index) => {
+        if (element.id === idGroup) indexGroup = index
+      })
       state.groups[indexGroup].title = title
     },
     deleteGroup (state, idGroup) {
       let indexGroup = Number
-      for (let i = 0; i < state.groups.length; i++) {
-        if (state.groups[i].id === idGroup) indexGroup = i
-      }
+      state.groups.forEach((element, index) => {
+        if (element.id === idGroup) indexGroup = index
+      })
       state.groups.splice(indexGroup, 1)
     },
     deleteItem (state, pak) {
       const { idGroup, idItem } = pak
       let indexGroup = Number
-      for (let i = 0; i < state.groups.length; i++) {
-        if (state.groups[i].id === idGroup) indexGroup = i
-      }
+      state.groups.forEach((element, index) => {
+        if (element.id === idGroup) indexGroup = index
+      })
       let indexItem = Number
-      for (let i = 0; i < state.groups[indexGroup].list.length; i++) {
-        if (state.groups[indexGroup].list[i].id === idItem) indexItem = i
-      }
+      state.groups[indexGroup].list.forEach((element, index) => {
+        if (element.id === idItem) indexItem = index
+      })
       state.groups[indexGroup].list.splice(indexItem, 1)
     },
     updateItem (state, pak) {
       const { idGroup, idItem, item } = pak
       let indexGroup = Number
-      for (let i = 0; i < state.groups.length; i++) {
-        if (state.groups[i].id === idGroup) indexGroup = i
-      }
+      state.groups.forEach((element, index) => {
+        if (element.id === idGroup) indexGroup = index
+      })
       let indexItem = Number
-      for (let i = 0; i < state.groups[indexGroup].list.length; i++) {
-        if (state.groups[indexGroup].list[i].id === idItem) indexItem = i
-      }
+      state.groups[indexGroup].list.forEach((element, index) => {
+        if (element.id === idItem) indexItem = index
+      })
       state.groups[indexGroup].list[indexItem].item = item
     },
     updateCache (state, pak) {
       const { idGroup, item } = pak
       let indexGroup = Number
-      for (let i = 0; i < state.groups.length; i++) {
-        if (state.groups[i].id === idGroup) indexGroup = i
-      }
+      state.groups.forEach((element, index) => {
+        if (element.id === idGroup) indexGroup = index
+      })
       state.groups[indexGroup].itemCache = item
     },
     addItem (state, idGroup) {
       let indexGroup = Number
-      for (let i = 0; i < state.groups.length; i++) {
-        if (state.groups[i].id === idGroup) indexGroup = i
-      }
+      state.groups.forEach((element, index) => {
+        if (element.id === idGroup) indexGroup = index
+      })
       const _thisList = state.groups[indexGroup].list
       let _thisId = Number
       if (_thisList.length === 0) {
