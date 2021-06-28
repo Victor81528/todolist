@@ -3,7 +3,7 @@
     <header>
       <nav>
         <div class="bgMode">
-          <button id="openOptions" @click="openOption">{{bgMode}}</button>
+          <button id="optionSwitch" @click="openOption">{{bgMode}} <i class="fas fa-caret-down" :class="{'rotate': open}"></i></button>
           <div class="options" :class="{'isOpen': open}">
             <button class="option" @click="updateBgMode('mixed')">Mixed</button>
             <button class="option" @click="updateBgMode('dark')">Dark Mode</button>
@@ -33,11 +33,7 @@ export default {
   },
   methods: {
     addGroup () {
-      if (this.$store.state.groups.length >= 3) {
-        alert('付費升級Pro版，以解鎖更多項目群組。')
-      } else {
-        this.$store.commit('addGroup')
-      }
+      this.$store.commit('addGroup')
     },
     openOption () {
       this.open = !this.open
@@ -46,9 +42,6 @@ export default {
       this.$store.commit('updateBgMode', mode)
       this.open = false
     }
-    // updateBgMode (e) {
-    //   this.$store.commit('updateBgMode', e.target.value)
-    // }
   }
 }
 </script>
@@ -71,16 +64,24 @@ export default {
       justify-content: flex-start;
       align-items: center;
       .bgMode {
+        display: flex;
         position: relative;
         height: 100%;
-        width: 100px;
-        button#openOptions {
+        width: 180px;
+        flex-flow: nowrap column;
+        justify-content: flex-start;
+        align-items: center;
+        font-size: 32px;
+        button#optionSwitch {
           width: 100%;
           height: 100%;
           color: $bg-white;
           background-color: initial;
           border: 0;
           border-radius: 0;
+          .rotate {
+            transform: rotate(-180deg)
+          }
         }
         .options {
           display: none;
@@ -91,6 +92,7 @@ export default {
           width: 100%;
           flex-flow: nowrap column;
           justify-content: flex-start;
+          top: 50px;
           border-top: 1px solid #161717;
           button.option {
             height: 50px;

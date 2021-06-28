@@ -78,20 +78,52 @@ export default {
     display: flex;
     width: 100vw;
     min-height: 100vh;
-    flex-flow: nowrap row;
+    flex-flow: wrap row;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     box-sizing: border-box;
-    padding: 150px;
+    padding: {
+      top: 150px;
+      right: 50px;
+      bottom: 150px;
+      left: 50px;
+    }
+    @media screen and (max-width: 2560px) {
+      padding: {
+        top: 140px;
+        right: 45px;
+        bottom: 140px;
+        left: 45px;
+      }
+    }
     .groups {
       position: relative;
-      width: 549px;
+      width: 360px;
       min-height: 250px;
       box-sizing: border-box;
       border-radius: 16px;
       background-color: #FFFFFF;
-      margin-right: 30px;
-      padding: 48px;
+      padding: 32px;
+      margin: {
+        top: 25px;
+        right: 25px;
+      }
+      @media screen and (max-width: 2560px) {
+        width: 260px;
+        padding: 22px;
+        margin: {
+          top: 16px;
+          right: 16px;
+        }
+      }
+      @media screen and (max-width: 1920px) {
+        width: 250px;
+        padding: 25px;
+        margin: {
+          top: 20px;
+          right: 20px;
+        }
+      }
       #btnDelet {
         display: none;
       }
@@ -99,35 +131,53 @@ export default {
         #btnDelet {
           display: block;
           position: absolute;
-          right: 18px;
-          top: 18px;
+          right: 12px;
+          top: 14px;
           box-sizing: border-box;
           background-color: inherit;
           border: none;
+          color: #222;
+          transition: 1s ease-in-out 1s;
+          @media screen and (max-width: 2560px) {
+            right: 6px;
+            top: 8px;
+          }
           .fa-times-circle {
             font-size: 30px;
             color: $bg-black;
+            @media screen and (max-width: 2560px) {
+              font-size: 24px;
+            }
           }
         }
       }
       .title {
         display: flex;
         align-items: center;
-        height: 80px;
+        height: $li-height;
+        @media screen and (max-width: 2560px) {
+          height: 56px;
+        }
         input {
           font-family: 'Rubik', sans-serif;
           font-weight: 500;
           width: 100%;
           border: 0;
-          font-size: 36px;
+          font-size: 34px;
           line-height: 48px;
+          @media screen and (max-width: 2560px) {
+            font-size: 30px;
+          }
         }
       }
       ul {
         li.items{
           display: flex;
           align-items: center;
-          height: 80px;
+          height: $li-height;
+          @media screen and (max-width: 2560px) {
+            height: 56px;
+          }
           label {
             display: flex;
             position: relative;
@@ -149,19 +199,12 @@ export default {
                   background-color: #29ABE2;
                   i.fa-check {
                     display: inline;
-                    font-size: 32px;
+                    font-size: 26px;
                     color: #FFFFFF;
+                    @media screen and (max-width: 2560px) {
+                      font-size: 24px;
+                    }
                   }
-                }
-                ~ span.checkMark:after{
-                  // display: block;
-                  // left: calc((48px - 27px) / 2);
-                  // top: calc((48px - 23px) / 2);
-                  // width: 12.5px;
-                  // height: 23px;
-                  // border: solid #FFFFFF;
-                  // border-width: 0 6px 6px 0;
-                  // transform: rotate(45deg);
                 }
                 ~ input.itemInput {
                   text-decoration: line-through;
@@ -169,12 +212,19 @@ export default {
               }
             }
             span.checkMark {
-              width: 48px;
-              height: 48px;
+              width: 38px;
+              height: 38px;
               box-sizing: border-box;
               border: 3px solid #B4B4B4;
               border-radius: 12px;
-              margin-right: 24px;
+              margin-right: 14px;
+              @media screen and (max-width: 2560px) {
+                width: 32px;
+                height: 32px;
+                margin-right: 9px;
+              }
+              @media screen and (max-width: 1920px) {
+              }
               &:hover {
                 background-color: #B4B4B4;
               }
@@ -188,33 +238,45 @@ export default {
               }
             }
             input.itemInput {
+              width: 240px;
               font-family: 'Rubik', sans-serif;
-              font-size: 32px;
+              font-size: 28px;
               font-weight: 400;
               border: 0;
+              @media screen and (max-width: 2560px) {
+                width: 170px;
+                font-size: 22px;
+              }
             }
           }
         }
         .newItem {
           display: flex;
-          height: 80px;
+          height: $li-height;
           justify-content: center;
           align-items: center;
+          @media screen and (max-width: 2560px) {
+            height: 56px;
+          }
+          @media screen and (max-width: 1920px) {
+          }
           label {
             display: flex;
-            height: 48px;
             width: 100%;
             align-items: center;
             input {
               width: 100%;
-              font-size: 32px;
+              font-size: 28px;
               background-color: $bg-white;
               border: 0;
               border-radius: 16px;
               padding: {
                 left: 20px;
-                top: 7px;
-                bottom: 7px;
+                top: 5px;
+                bottom: 5px;
+              }
+              @media screen and (max-width: 2560px) {
+                font-size: 22px;
               }
             }
           }
