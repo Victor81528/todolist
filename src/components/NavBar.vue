@@ -54,6 +54,9 @@ export default {
   height: 50px;
   z-index: 5;
   background-color: rgb(97, 97, 97);
+  @media screen and (max-width: 1920px) {
+    height: 30px;
+  }
   header {
     width: 100%;
     height: 100%;
@@ -72,6 +75,10 @@ export default {
         justify-content: flex-start;
         align-items: center;
         font-size: 32px;
+        @media screen and (max-width: 1920px) {
+          width: 100px;
+          font-size: 16px;
+        }
         button#optionSwitch {
           width: 100%;
           height: 100%;
@@ -94,6 +101,9 @@ export default {
           justify-content: flex-start;
           top: 50px;
           border-top: 1px solid #161717;
+          @media screen and (max-width: 1920px) {
+            top: 30px
+          }
           button.option {
             height: 50px;
             background-color: rgb(97, 97, 97);
@@ -101,6 +111,9 @@ export default {
             border-radius: 0;
             border-bottom: 1px solid #161717;
             color: $bg-white;
+            @media screen and (max-width: 1920px) {
+              height: 30px;
+            }
           }
         }
       }
@@ -115,13 +128,22 @@ export default {
         border: 3px solid $bg-white;
         border-radius: 50%;
         &:hover {
-
+        }
+        @media screen and (max-width: 1920px) {
+          bottom: -22px;
+          width: 32px;
+          height: 32px;
+          border: 2px solid $bg-white;
         }
         .fa-plus {
           font-size: 28px;
           font-weight: 1200;
           color: $bg-white;
           &:hover {
+          }
+          @media screen and (max-width: 1920px) {
+            font-size: 15px;
+            font-weight: 700;
           }
         }
       }

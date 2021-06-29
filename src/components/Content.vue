@@ -96,10 +96,14 @@ export default {
         left: 45px;
       }
     }
+    @media screen and (max-width: 1920px) {
+      padding: {
+        top: 120px
+      }
+    }
     .groups {
       position: relative;
       width: 360px;
-      min-height: 250px;
       box-sizing: border-box;
       border-radius: 16px;
       background-color: #FFFFFF;
@@ -117,11 +121,11 @@ export default {
         }
       }
       @media screen and (max-width: 1920px) {
-        width: 250px;
-        padding: 25px;
+        width: 200px;
+        padding: 16px;
         margin: {
-          top: 20px;
-          right: 20px;
+          top: 14px;
+          right: 12px;
         }
       }
       #btnDelet {
@@ -137,16 +141,21 @@ export default {
           background-color: inherit;
           border: none;
           color: #222;
-          transition: 1s ease-in-out 1s;
           @media screen and (max-width: 2560px) {
             right: 6px;
             top: 8px;
+          }
+          @media screen and(max-width: 1920px) {
+            right: 4px;
           }
           .fa-times-circle {
             font-size: 30px;
             color: $bg-black;
             @media screen and (max-width: 2560px) {
               font-size: 24px;
+            }
+            @media screen and (max-width: 1920px) {
+              font-size: 20px;
             }
           }
         }
@@ -158,15 +167,20 @@ export default {
         @media screen and (max-width: 2560px) {
           height: 56px;
         }
+        @media screen and (max-width: 1920px) {
+          height: 36px;
+        }
         input {
           font-family: 'Rubik', sans-serif;
           font-weight: 500;
           width: 100%;
           border: 0;
           font-size: 34px;
-          line-height: 48px;
           @media screen and (max-width: 2560px) {
             font-size: 30px;
+          }
+          @media screen and (max-width: 1920px) {
+            font-size: 20px;
           }
         }
       }
@@ -177,6 +191,9 @@ export default {
           height: $li-height;
           @media screen and (max-width: 2560px) {
             height: 56px;
+          }
+          @media screen and (max-width: 1920px) {
+            height: 36px;
           }
           label {
             display: flex;
@@ -204,6 +221,9 @@ export default {
                     @media screen and (max-width: 2560px) {
                       font-size: 24px;
                     }
+                    @media screen and (max-width: 1920px) {
+                      font-size: 14px;
+                    }
                   }
                 }
                 ~ input.itemInput {
@@ -221,9 +241,15 @@ export default {
               @media screen and (max-width: 2560px) {
                 width: 32px;
                 height: 32px;
+                border-radius: 8px;
                 margin-right: 9px;
               }
               @media screen and (max-width: 1920px) {
+                width: 22px;
+                height: 22px;
+                border: 2px solid #B4B4B4;
+                border-radius: 6px;
+                margin-right: 6px;
               }
               &:hover {
                 background-color: #B4B4B4;
@@ -247,6 +273,10 @@ export default {
                 width: 170px;
                 font-size: 22px;
               }
+              @media screen and (max-width: 1920px) {
+                width: 140px;
+                font-size: 16px;
+              }
             }
           }
         }
@@ -259,6 +289,7 @@ export default {
             height: 56px;
           }
           @media screen and (max-width: 1920px) {
+            height: 36px;
           }
           label {
             display: flex;
@@ -269,7 +300,7 @@ export default {
               font-size: 28px;
               background-color: $bg-white;
               border: 0;
-              border-radius: 16px;
+              border-radius: 10px;
               padding: {
                 left: 20px;
                 top: 5px;
@@ -277,6 +308,14 @@ export default {
               }
               @media screen and (max-width: 2560px) {
                 font-size: 22px;
+              }
+              @media screen and (max-width: 1920px) {
+                padding: {
+                  left: 16px;
+                  top: 3px;
+                  bottom: 3px;
+                };
+                font-size: 16px;
               }
             }
           }
