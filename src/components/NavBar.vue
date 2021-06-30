@@ -53,9 +53,17 @@ export default {
   width: 100%;
   height: 50px;
   z-index: 5;
-  background-color: rgb(97, 97, 97);
   @media screen and (max-width: 1920px) {
     height: 30px;
+  }
+  @media screen and (max-width: 1366px) {
+    height: 24px;
+  }
+  @media screen and (max-width: 768px) {
+    height: 30px;
+  }
+  @media screen and (max-width: 414px) {
+    height: 40px;
   }
   header {
     width: 100%;
@@ -66,6 +74,7 @@ export default {
       height: 100%;
       justify-content: flex-start;
       align-items: center;
+      background-color: $bg-gray;
       .bgMode {
         display: flex;
         position: relative;
@@ -78,6 +87,16 @@ export default {
         @media screen and (max-width: 1920px) {
           width: 100px;
           font-size: 16px;
+        }
+        @media screen and (max-width: 1366px) {
+          width: 90px;
+          font-size: 14px;
+        }
+        @media screen and (max-width: 768px) {
+          width: 100px;
+          font-size: 17px;
+        }
+        @media screen and (max-width: 414px) {
         }
         button#optionSwitch {
           width: 100%;
@@ -104,6 +123,12 @@ export default {
           @media screen and (max-width: 1920px) {
             top: 30px
           }
+          @media screen and (max-width: 1366px) {
+            top: 24px;
+          }
+          @media screen and (max-width: 768px) {
+            top: 30px;
+          }
           button.option {
             height: 50px;
             background-color: rgb(97, 97, 97);
@@ -114,36 +139,59 @@ export default {
             @media screen and (max-width: 1920px) {
               height: 30px;
             }
+            @media screen and (max-width: 1366px) {
+              height: 24px;
+            }
+            @media screen and (max-width: 768px) {
+              height: 30px;
+            }
           }
         }
       }
       button#addGroup {
+        display: flex;
         position: absolute;
-        right: 10px;
-        bottom: -40px;
         width: 60px;
         height: 60px;
+        right: 10px;
+        bottom: -40px;
+        justify-content: center;
+        align-items: center;
         font-family: 'Rubik', sans-serif;
         background-color: rgb(97, 97, 97);
         border: 3px solid $bg-white;
         border-radius: 50%;
-        &:hover {
-        }
         @media screen and (max-width: 1920px) {
-          bottom: -22px;
           width: 32px;
           height: 32px;
+          bottom: -22px;
+          border: 2px solid $bg-white;
+        }
+        @media screen and (max-width: 1366px) {
+          width: 28px;
+          height: 28px;
+          bottom: -18px;
+          right: 8px;
+          border: 2px solid $bg-white;
+        }
+        @media screen and (max-width: 768px) {
+          width: 35px;
+          height: 35px;
+          bottom: -23px;
+          right: 8px;
           border: 2px solid $bg-white;
         }
         .fa-plus {
           font-size: 28px;
           font-weight: 1200;
           color: $bg-white;
-          &:hover {
-          }
           @media screen and (max-width: 1920px) {
             font-size: 15px;
             font-weight: 700;
+          }
+          @media screen and (max-width: 1366px) {
+            font-size: 13px;
+            font-weight: 600;
           }
         }
       }

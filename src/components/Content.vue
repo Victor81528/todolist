@@ -101,6 +101,22 @@ export default {
         top: 120px
       }
     }
+    @media screen and (max-width: 1366px) {
+      padding: {
+        top: 100px;
+        right: 40px;
+        bottom: 100px;
+        left: 40px;
+      };
+    }
+    @media screen and (max-width: 768px) {
+      padding: {
+        top: 80px;
+        right: 30px;
+        bottom: 80px;
+        left: 30px;
+      };
+    }
     .groups {
       position: relative;
       width: 360px;
@@ -123,10 +139,29 @@ export default {
       @media screen and (max-width: 1920px) {
         width: 200px;
         padding: 16px;
+        border-radius: 12px;
         margin: {
           top: 14px;
           right: 12px;
         }
+      }
+      @media screen and (max-width: 1366px) {
+        width: 180px;
+        padding: 12px;
+        border-radius: 8px;
+        margin: {
+          top: 10px;
+          right: 9px
+        };
+      }
+      @media screen and (max-width: 768px) {
+        width: 140px;
+        padding: 10px;
+        border-radius: 6px;
+        margin: {
+          top: 8px;
+          right: 7px;
+        };
       }
       #btnDelet {
         display: none;
@@ -140,7 +175,6 @@ export default {
           box-sizing: border-box;
           background-color: inherit;
           border: none;
-          color: #222;
           @media screen and (max-width: 2560px) {
             right: 6px;
             top: 8px;
@@ -148,14 +182,31 @@ export default {
           @media screen and(max-width: 1920px) {
             right: 4px;
           }
+          @media screen and (max-width: 1366px) {
+            top: 6px;
+            right: 2px;
+          }
+          @media screen and (max-width: 768px) {
+            top: 3px;
+            right: 0px;
+          }
           .fa-times-circle {
             font-size: 30px;
-            color: $bg-black;
+            color: $bg-gray;
             @media screen and (max-width: 2560px) {
               font-size: 24px;
             }
             @media screen and (max-width: 1920px) {
               font-size: 20px;
+            }
+            @media screen and (max-width: 1366px) {
+              font-size: 16px;
+            }
+            @media screen and (max-width: 768px) {
+              font-size: 12px;
+            }
+            &:hover {
+              color: $bg-white;
             }
           }
         }
@@ -170,8 +221,14 @@ export default {
         @media screen and (max-width: 1920px) {
           height: 36px;
         }
+        @media screen and (max-width: 1366px) {
+          height: 32px;
+        }
+        @media screen and (max-width: 768px) {
+          height: 24px;
+        }
         input {
-          font-family: 'Rubik', sans-serif;
+          font-family: 'Rubik', 'Noto Sans TC';
           font-weight: 500;
           width: 100%;
           border: 0;
@@ -180,7 +237,13 @@ export default {
             font-size: 30px;
           }
           @media screen and (max-width: 1920px) {
-            font-size: 20px;
+            font-size: 18px;
+          }
+          @media screen and (max-width: 1366px) {
+            font-size: 17px;
+          }
+          @media screen and (max-width: 768px) {
+            font-size: 14px;
           }
         }
       }
@@ -194,6 +257,12 @@ export default {
           }
           @media screen and (max-width: 1920px) {
             height: 36px;
+          }
+          @media screen and (max-width: 1366px) {
+            height: 32px;
+          }
+          @media screen and (max-width: 768px) {
+            height: 24px;
           }
           label {
             display: flex;
@@ -222,7 +291,13 @@ export default {
                       font-size: 24px;
                     }
                     @media screen and (max-width: 1920px) {
-                      font-size: 14px;
+                      font-size: 13px;
+                    }
+                    @media screen and (max-width: 1366px) {
+                      font-size: 11px;
+                    }
+                    @media screen and (max-width: 768px) {
+                      font-size: 10px;
                     }
                   }
                 }
@@ -245,11 +320,23 @@ export default {
                 margin-right: 9px;
               }
               @media screen and (max-width: 1920px) {
-                width: 22px;
-                height: 22px;
+                width: 20px;
+                height: 20px;
                 border: 2px solid #B4B4B4;
                 border-radius: 6px;
-                margin-right: 6px;
+                margin-right: 5px;
+              }
+              @media screen and (max-width: 1366px) {
+                width: 17px;
+                height: 17px;
+                border-radius: 4px;
+                margin-right: 4px;
+              }
+              @media screen and (max-width: 768px) {
+                width: 15px;
+                height: 15px;
+                border-radius: 3px;
+                margin-right: 2px;
               }
               &:hover {
                 background-color: #B4B4B4;
@@ -265,7 +352,7 @@ export default {
             }
             input.itemInput {
               width: 240px;
-              font-family: 'Rubik', sans-serif;
+              font-family: 'Rubik', 'Noto Sans TC';
               font-size: 28px;
               font-weight: 400;
               border: 0;
@@ -275,7 +362,15 @@ export default {
               }
               @media screen and (max-width: 1920px) {
                 width: 140px;
-                font-size: 16px;
+                font-size: 15px;
+              }
+              @media screen and (max-width: 1366px) {
+                width: 130px;
+                font-size: 12px;
+              }
+              @media screen and (max-width: 768px) {
+                width: 100px;
+                font-size: 10px;
               }
             }
           }
@@ -285,11 +380,19 @@ export default {
           height: $li-height;
           justify-content: center;
           align-items: center;
+          font-family: 'Rubik', 'Noto Sans TC';
+          font-weight: 400;
           @media screen and (max-width: 2560px) {
             height: 56px;
           }
           @media screen and (max-width: 1920px) {
             height: 36px;
+          }
+          @media screen and (max-width: 1366px) {
+            height: 32px;
+          }
+          @media screen and (max-width: 768px) {
+            height: 24px;
           }
           label {
             display: flex;
@@ -315,7 +418,16 @@ export default {
                   top: 3px;
                   bottom: 3px;
                 };
-                font-size: 16px;
+                font-size: 15px;
+              }
+              @media screen and (max-width: 1366px) {
+                font-size: 13px;
+              }
+              @media screen and (max-width: 768px) {
+                font-size: 12px;
+                padding: {
+                  left: 10px;
+                };
               }
             }
           }

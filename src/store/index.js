@@ -6,28 +6,75 @@ export default createStore({
     groups: [
       {
         id: 0,
-        title: 'Title 1',
+        title: '待辦事項',
         itemCache: '',
         list: [
           {
             id: 0,
-            item: 'to do item'
+            item: '買8/9回嘉火車票'
           },
           {
             id: 1,
-            item: 'another thing'
+            item: '買奶油'
           },
           {
             id: 2,
-            item: 'another thing'
+            item: '回Kate email'
           },
           {
             id: 3,
-            item: 'another thing'
+            item: '讀完提問力'
           },
           {
             id: 4,
-            item: 'another thing'
+            item: '幫媽媽訂洗衣機'
+          }
+        ]
+      },
+      {
+        id: 1,
+        title: '待辦事項2',
+        itemCache: '',
+        list: [
+          {
+            id: 0,
+            item: '保養機車'
+          },
+          {
+            id: 1,
+            item: '領包裹'
+          },
+          {
+            id: 2,
+            item: '買一條毛巾'
+          },
+          {
+            id: 3,
+            item: '禮拜二跟琬婷看電影'
+          },
+          {
+            id: 4,
+            item: '取消Apple TV+試用'
+          },
+          {
+            id: 5,
+            item: '皮夾送原廠保養'
+          },
+          {
+            id: 6,
+            item: '拿陶器給妹仔'
+          },
+          {
+            id: 7,
+            item: '買充電器收納袋'
+          },
+          {
+            id: 8,
+            item: '買保濕凝露'
+          },
+          {
+            id: 9,
+            item: '買眼藥水和口罩'
           }
         ]
       }
