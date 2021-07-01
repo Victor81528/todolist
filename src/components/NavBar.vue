@@ -63,7 +63,7 @@ export default {
     height: 30px;
   }
   @media screen and (max-width: 414px) {
-    height: 40px;
+    height: 45px;
   }
   header {
     width: 100%;
@@ -97,6 +97,7 @@ export default {
           font-size: 17px;
         }
         @media screen and (max-width: 414px) {
+          width: 120px;
         }
         button#optionSwitch {
           width: 100%;
@@ -129,6 +130,9 @@ export default {
           @media screen and (max-width: 768px) {
             top: 30px;
           }
+          @media screen and (max-width: 414px) {
+            top: 45px;
+          }
           button.option {
             height: 50px;
             background-color: rgb(97, 97, 97);
@@ -144,6 +148,9 @@ export default {
             }
             @media screen and (max-width: 768px) {
               height: 30px;
+            }
+            @media screen and (max-width: 414px) {
+              height: 45px;
             }
           }
         }
@@ -181,6 +188,13 @@ export default {
           right: 8px;
           border: 2px solid $bg-white;
         }
+        @media screen and (max-width: 414px) {
+          width: 42px;
+          height: 42px;
+          bottom: -25px;
+          right: 8px;
+          border: 2px solid $bg-white;
+        }
         .fa-plus {
           font-size: 28px;
           font-weight: 1200;
@@ -192,6 +206,9 @@ export default {
           @media screen and (max-width: 1366px) {
             font-size: 13px;
             font-weight: 600;
+          }
+          @media screen and (max-width: 414px) {
+            font-size: 15px;
           }
         }
       }

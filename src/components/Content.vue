@@ -113,8 +113,15 @@ export default {
       padding: {
         top: 80px;
         right: 30px;
-        bottom: 80px;
+        bottom: 30px;
         left: 30px;
+      };
+    }
+    @media screen and (max-width: 414px) {
+      padding: {
+        top: 100px;
+        right: 7px;
+        left: 10px
       };
     }
     .groups {
@@ -163,6 +170,17 @@ export default {
           right: 7px;
         };
       }
+      @media screen and (max-width: 414px) {
+        width: 180px;
+        padding: 8px;
+        margin: {
+          top: 6px;
+          right: 6px;
+        };
+      }
+      @media screen and (max-width: 375px) {
+        width: 172px;
+      }
       #btnDelet {
         display: none;
       }
@@ -173,7 +191,7 @@ export default {
           right: 12px;
           top: 14px;
           box-sizing: border-box;
-          background-color: inherit;
+          background-color: rgba(black, 0);
           border: none;
           @media screen and (max-width: 2560px) {
             right: 6px;
@@ -190,6 +208,14 @@ export default {
             top: 3px;
             right: 0px;
           }
+          @media screen and (max-width: 414px) {
+            top: 0px;
+            right: -14px;
+          }
+          @media screen and (max-width: 375px) {
+            top: 0px;
+            right: -14px;
+          }
           .fa-times-circle {
             font-size: 30px;
             color: $bg-gray;
@@ -204,6 +230,9 @@ export default {
             }
             @media screen and (max-width: 768px) {
               font-size: 12px;
+            }
+            @media screen and (max-width: 414px) {
+              font-size: 17px;
             }
             &:hover {
               color: $bg-white;
@@ -244,6 +273,9 @@ export default {
           }
           @media screen and (max-width: 768px) {
             font-size: 14px;
+          }
+          @media screen and (max-width: 414px) {
+            font-size: 20px;
           }
         }
       }
@@ -338,6 +370,9 @@ export default {
                 border-radius: 3px;
                 margin-right: 2px;
               }
+              @media screen and (max-width: 414px) {
+                margin-right: 0px;
+              }
               &:hover {
                 background-color: #B4B4B4;
               }
@@ -371,6 +406,10 @@ export default {
               @media screen and (max-width: 768px) {
                 width: 100px;
                 font-size: 10px;
+              }
+              @media screen and (max-width: 414px) {
+                width: 140px;
+                font-size: 13px;
               }
             }
           }
@@ -428,6 +467,9 @@ export default {
                 padding: {
                   left: 10px;
                 };
+              }
+              @media screen and (max-width: 414px) {
+                font-size: 13px;
               }
             }
           }
