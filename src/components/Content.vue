@@ -22,7 +22,7 @@
         </li>
       </ul>
     </div>
-    <!-- <textarea @input="this.rows=this.value.split('\n').length-1"></textarea> -->
+    <!-- <textarea class="aaa" @input="this.rows=this.value.split('\n').length-1"></textarea> -->
   </div>
 </template>
 
@@ -74,6 +74,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.aaa {
+  width: 300px;
+  min-height: 100px;
+}
   #content {
     display: flex;
     width: 100vw;

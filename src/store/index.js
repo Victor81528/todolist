@@ -114,11 +114,11 @@ export default createStore({
       state.groups.forEach((element, index) => {
         if (element.id === idGroup) indexGroup = index
       })
-      let indexItem = Number
+      let indexItem
       state.groups[indexGroup].list.forEach((element, index) => {
         if (element.id === idItem) indexItem = index
       })
-      state.groups[indexGroup].list.splice(indexItem, 1)
+      if (indexItem || indexItem === 0)state.groups[indexGroup].list.splice(indexItem, 1)
     },
     updateItem (state, pak) {
       const { idGroup, idItem, item } = pak
