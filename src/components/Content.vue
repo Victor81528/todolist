@@ -10,7 +10,7 @@
       <ul>
         <li class="items" v-for="item of group.list" :key="item.id">
           <label>
-            <input type="checkbox" class="itemCheckbox" :class="item.id" @input="deleteItem(group.id, item.id)">
+            <input type="checkbox" class="itemCheckbox" :class="item.id" @input="deleteItem(group.id, item.id, $event)">
             <span class="checkMark"><i class="fas fa-check"></i></span>
             <input type="text" class="itemInput" :class="item.id" :value="item.item" @input="updateItem(group.id, item.id, $event)">
           </label>
@@ -49,7 +49,8 @@ export default {
       const pak = { idGroup, title }
       this.$store.commit('updateTitle', pak)
     },
-    deleteItem (idGroup, idItem) {
+    deleteItem (idGroup, idItem, e) {
+      e.target.style.pointerEvents = 'none'
       const pak = { idGroup, idItem }
       setTimeout(() => {
         this.$store.commit('deleteItem', pak)
