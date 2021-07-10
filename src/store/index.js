@@ -50,11 +50,11 @@ export default createStore({
           },
           {
             id: 3,
-            item: '禮拜二跟琬婷看電影'
+            item: '禮拜二跟琬婷逛街'
           },
           {
             id: 4,
-            item: '取消Apple TV+試用'
+            item: '取消Apple TV+'
           },
           {
             id: 5,

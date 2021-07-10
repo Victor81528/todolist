@@ -40,7 +40,7 @@ export default {
     },
     updateBgMode (mode) {
       this.$store.commit('updateBgMode', mode)
-      this.open = false
+      this.open = !this.open
     }
   }
 }
@@ -83,6 +83,7 @@ export default {
         flex-flow: nowrap column;
         justify-content: flex-start;
         align-items: center;
+        padding: 0;
         font-size: 32px;
         @media screen and (max-width: 1920px) {
           width: 100px;
@@ -97,15 +98,16 @@ export default {
           font-size: 17px;
         }
         @media screen and (max-width: 414px) {
-          width: 120px;
+          width: 110px;
         }
         button#optionSwitch {
           width: 100%;
           height: 100%;
-          color: $bg-white;
-          background-color: initial;
+          padding: 0;
           border: 0;
           border-radius: 0;
+          color: $bg-white;
+          background-color: initial;
           .rotate {
             transform: rotate(-180deg)
           }
@@ -135,10 +137,11 @@ export default {
           }
           button.option {
             height: 50px;
-            background-color: rgb(97, 97, 97);
+            padding: 0;
             border: 0;
             border-radius: 0;
             border-bottom: 1px solid #161717;
+            background-color: rgb(97, 97, 97);
             color: $bg-white;
             @media screen and (max-width: 1920px) {
               height: 30px;

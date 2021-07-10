@@ -5,24 +5,27 @@
         <i class="fas fa-times-circle"></i>
       </button>
       <div class="title">
-        <input type="text" :value="group.title" @input="updateTitle(group.id, $event)">
+        <textarea :value="group.title" @input="updateTitle(group.id, $event), textareaResize($event)"></textarea>
       </div>
       <ul>
         <li class="items" v-for="item of group.list" :key="item.id">
           <label>
             <input type="checkbox" class="itemCheckbox" :class="item.id" @input="deleteItem(group.id, item.id, $event)">
             <span class="checkMark"><i class="fas fa-check"></i></span>
-            <input type="text" class="itemInput" :class="item.id" :value="item.item" @input="updateItem(group.id, item.id, $event)">
+            <textarea class="itemInput" :class="item.id" :value="item.item"
+              @input="updateItem(group.id, item.id, $event),  textareaResize($event)">
+            </textarea>
           </label>
         </li>
-        <li class="newItem">
-          <label>
-            <input type="textarea" :value="group.itemCache" @input="updateCache(group.id, $event)" @keypress.enter="addItem(group.id, $event)" @blur="addItem(group.id, $event)">
-          </label>
-        </li>
+        <div class="newItem">
+          <textarea :value="group.itemCache"
+            @change="updateCache(group.id, $event), textareaResize($event)"
+            @keypress.enter="addItem(group.id, $event)"
+            @blur="addItem(group.id, $event)">
+          </textarea>
+        </div>
       </ul>
     </div>
-    <!-- <textarea class="aaa" @input="this.rows=this.value.split('\n').length-1"></textarea> -->
   </div>
 </template>
 
@@ -41,6 +44,9 @@ export default {
     ])
   },
   methods: {
+    aaa (q) {
+      console.log(q)
+    },
     deleteGroup (idGroup) {
       this.$store.commit('deleteGroup', idGroup)
     },
@@ -56,6 +62,12 @@ export default {
         this.$store.commit('deleteItem', pak)
       }, 500)
     },
+    textareaResize (e) {
+      const adjuste = e.target.scrollHeight
+      if (adjuste > e.target.clientHeight) e.target.style.height = adjuste + 'px'
+      // console.log('scrollHeight:' + e.target.scrollHeight)
+      // console.log('clientHeight' + e.target.clientHeight)
+    },
     updateItem (idGroup, idItem, e) {
       const item = e.target.value
       const pak = { idGroup, idItem, item }
@@ -67,7 +79,9 @@ export default {
       this.$store.commit('updateCache', pak)
     },
     addItem (idGroup, e) {
+      console.log(e.target.value)
       if (e.target.value) this.$store.commit('addItem', idGroup)
+      e.preventDefault()
     }
   }
 }
@@ -75,10 +89,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.aaa {
-  width: 300px;
-  min-height: 100px;
-}
   #content {
     display: flex;
     width: 100vw;
@@ -177,7 +187,7 @@ export default {
       }
       @media screen and (max-width: 414px) {
         width: 180px;
-        padding: 8px;
+        padding: 12px;
         margin: {
           top: 6px;
           right: 6px;
@@ -193,21 +203,21 @@ export default {
         #btnDelet {
           display: block;
           position: absolute;
-          right: 12px;
+          right: 8px;
           top: 14px;
           box-sizing: border-box;
           background-color: rgba(black, 0);
           border: none;
           @media screen and (max-width: 2560px) {
-            right: 6px;
             top: 8px;
+            right: 6px;
           }
           @media screen and(max-width: 1920px) {
-            right: 4px;
+            top: 6px;
+            right: 2px;
           }
           @media screen and (max-width: 1366px) {
             top: 6px;
-            right: 2px;
           }
           @media screen and (max-width: 768px) {
             top: 3px;
@@ -248,32 +258,48 @@ export default {
       .title {
         display: flex;
         align-items: center;
-        height: $li-height;
+        margin: {
+          top: 13.5px;
+          bottom: 27px;
+        };
         @media screen and (max-width: 2560px) {
-          height: 56px;
+          margin: {
+            top: 9px;
+            bottom: 18px;
+          };
         }
         @media screen and (max-width: 1920px) {
-          height: 36px;
+          margin: {
+            top: 6px;
+            bottom: 12px;
+          };
         }
         @media screen and (max-width: 1366px) {
-          height: 32px;
+          margin: {
+            top: 5px;
+            bottom: 10px;
+          };
         }
-        @media screen and (max-width: 768px) {
-          height: 24px;
-        }
-        input {
+        textarea {
+          width: 100%;
+          height: 49px;
+          padding: 0;
+          padding-right: 6px;
+          border: 0;
           font-family: 'Rubik', 'Noto Sans TC';
           font-weight: 500;
-          width: 100%;
-          border: 0;
           font-size: 34px;
+          resize: none;
           @media screen and (max-width: 2560px) {
+            height: 45px;
             font-size: 30px;
           }
           @media screen and (max-width: 1920px) {
+            height: 28px;
             font-size: 18px;
           }
           @media screen and (max-width: 1366px) {
+            height: 25px;
             font-size: 17px;
           }
           @media screen and (max-width: 768px) {
@@ -288,25 +314,26 @@ export default {
         li.items{
           display: flex;
           align-items: center;
-          height: $li-height;
+          margin-bottom: 27px;
           @media screen and (max-width: 2560px) {
-            height: 56px;
+            margin-bottom: 24px;
           }
           @media screen and (max-width: 1920px) {
-            height: 36px;
+            margin-bottom: 16px;
           }
           @media screen and (max-width: 1366px) {
-            height: 32px;
+            margin-bottom: 15px;
           }
-          @media screen and (max-width: 768px) {
-            height: 24px;
+          @media screen and (max-width: 1366px) {
+            margin-bottom: 15px;
           }
           label {
             display: flex;
             position: relative;
+            height: 100%;
             flex-flow: nowrap row;
             justify-content: flex-start;
-            align-items: center;
+            align-items: flex-start;
             input.itemCheckbox {
               position: absolute;
               opacity: 0;
@@ -338,14 +365,17 @@ export default {
                     }
                   }
                 }
-                ~ input.itemInput {
+                ~ textarea.itemInput {
                   text-decoration: line-through;
                 }
               }
             }
             span.checkMark {
+              position: relative;
               width: 38px;
               height: 38px;
+              align-self: flex-start;
+              top: 2px;
               box-sizing: border-box;
               border: 3px solid #B4B4B4;
               border-radius: 12px;
@@ -359,6 +389,7 @@ export default {
               @media screen and (max-width: 1920px) {
                 width: 20px;
                 height: 20px;
+                top: 1px;
                 border: 2px solid #B4B4B4;
                 border-radius: 6px;
                 margin-right: 5px;
@@ -372,11 +403,15 @@ export default {
               @media screen and (max-width: 768px) {
                 width: 15px;
                 height: 15px;
+                top: 2px;
                 border-radius: 3px;
                 margin-right: 2px;
               }
               @media screen and (max-width: 414px) {
-                margin-right: 0px;
+                width: 18px;
+                height: 18px;
+                top: 2px;
+                margin-right: 3px;
               }
               &:hover {
                 background-color: #B4B4B4;
@@ -390,92 +425,97 @@ export default {
                 display: none;
               }
             }
-            input.itemInput {
+            textarea.itemInput {
+              display: flex;
               width: 240px;
+              height: 42px;
+              flex-flow: nowrap row;
+              justify-content: center;
+              box-sizing: border-box;
               font-family: 'Rubik', 'Noto Sans TC';
               font-size: 28px;
               font-weight: 400;
               border: 0;
+              resize: none;
+              padding: 0;
+              padding-top: 0;
               @media screen and (max-width: 2560px) {
                 width: 170px;
+                height: 32px;
                 font-size: 22px;
               }
               @media screen and (max-width: 1920px) {
                 width: 140px;
+                height: 22px;
                 font-size: 15px;
               }
               @media screen and (max-width: 1366px) {
                 width: 130px;
+                height: 17px;
                 font-size: 12px;
               }
               @media screen and (max-width: 768px) {
                 width: 100px;
-                font-size: 10px;
+                height: 17px;
+                font-size: 9px;
               }
               @media screen and (max-width: 414px) {
                 width: 140px;
-                font-size: 13px;
+                height: 20px;
+                font-size: 14px;
               }
             }
           }
         }
         .newItem {
           display: flex;
-          height: $li-height;
           justify-content: center;
           align-items: center;
           font-family: 'Rubik', 'Noto Sans TC';
           font-weight: 400;
-          @media screen and (max-width: 2560px) {
-            height: 56px;
-          }
-          @media screen and (max-width: 1920px) {
-            height: 36px;
-          }
-          @media screen and (max-width: 1366px) {
-            height: 32px;
-          }
-          @media screen and (max-width: 768px) {
-            height: 24px;
-          }
-          label {
-            display: flex;
+          textarea {
             width: 100%;
-            align-items: center;
-            input {
-              width: 100%;
-              font-size: 28px;
-              background-color: $bg-white;
-              border: 0;
-              border-radius: 10px;
+            height: 40px;
+            font-size: 28px;
+            background-color: $bg-white;
+            border: 0;
+            border-radius: 10px;
+            padding: {
+              top: 3px;
+              right: 15px;
+              left: 15px;
+            }
+            resize: none;
+            @media screen and (max-width: 2560px) {
+              height: 32px;
+              font-size: 22px;
+            }
+            @media screen and (max-width: 1920px) {
+              height: 22px;
               padding: {
-                left: 20px;
-                top: 5px;
-                bottom: 5px;
-              }
-              @media screen and (max-width: 2560px) {
-                font-size: 22px;
-              }
-              @media screen and (max-width: 1920px) {
-                padding: {
-                  left: 16px;
-                  top: 3px;
-                  bottom: 3px;
-                };
-                font-size: 15px;
-              }
-              @media screen and (max-width: 1366px) {
-                font-size: 13px;
-              }
-              @media screen and (max-width: 768px) {
-                font-size: 12px;
-                padding: {
-                  left: 10px;
-                };
-              }
-              @media screen and (max-width: 414px) {
-                font-size: 13px;
-              }
+                top: 3px;
+                left: 16px;
+              };
+              font-size: 15px;
+              border-radius: 6px;
+            }
+            @media screen and (max-width: 1366px) {
+              height: 17px;
+              font-size: 12px;
+              border-radius: 4px;
+            }
+            @media screen and (max-width: 768px) {
+              height: 16px;
+              font-size: 3px;
+              // font-size: 9px;
+              padding: {
+                left: 10px;
+              };
+            }
+            @media screen and (max-width: 414px) {
+              height: 19px;
+              padding-top: 2px;
+              font-size: 13px;
             }
           }
         }
