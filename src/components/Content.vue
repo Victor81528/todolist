@@ -19,7 +19,7 @@
         </li>
         <div class="newItem">
           <textarea :value="group.itemCache"
-            @change="updateCache(group.id, $event), textareaResize($event)"
+            @input="updateCache(group.id, $event), textareaResize($event)"
             @keypress.enter="addItem(group.id, $event)"
             @blur="addItem(group.id, $event)">
           </textarea>
@@ -77,9 +77,9 @@ export default {
       const item = e.target.value
       const pak = { idGroup, item }
       this.$store.commit('updateCache', pak)
+      console.log(item)
     },
     addItem (idGroup, e) {
-      console.log(e.target.value)
       if (e.target.value) this.$store.commit('addItem', idGroup)
       e.preventDefault()
     }
@@ -289,18 +289,22 @@ export default {
           font-family: 'Rubik', 'Noto Sans TC';
           font-weight: 500;
           font-size: 34px;
+          line-height: 49px;
           resize: none;
           @media screen and (max-width: 2560px) {
             height: 45px;
             font-size: 30px;
+            line-height: 45px;
           }
           @media screen and (max-width: 1920px) {
             height: 28px;
             font-size: 18px;
+            line-height: 28px;
           }
           @media screen and (max-width: 1366px) {
             height: 25px;
             font-size: 17px;
+            line-height: 25px;
           }
           @media screen and (max-width: 768px) {
             font-size: 14px;
@@ -383,6 +387,7 @@ export default {
               @media screen and (max-width: 2560px) {
                 width: 32px;
                 height: 32px;
+                top: 0px;
                 border-radius: 8px;
                 margin-right: 9px;
               }
@@ -397,20 +402,21 @@ export default {
               @media screen and (max-width: 1366px) {
                 width: 17px;
                 height: 17px;
+                top: 0px;
                 border-radius: 4px;
                 margin-right: 4px;
               }
               @media screen and (max-width: 768px) {
                 width: 15px;
                 height: 15px;
-                top: 2px;
+                top: 1px;
                 border-radius: 3px;
                 margin-right: 2px;
               }
               @media screen and (max-width: 414px) {
                 width: 18px;
                 height: 18px;
-                top: 2px;
+                top: 1px;
                 margin-right: 3px;
               }
               &:hover {
@@ -426,33 +432,33 @@ export default {
               }
             }
             textarea.itemInput {
-              display: flex;
               width: 240px;
               height: 42px;
-              flex-flow: nowrap row;
-              justify-content: center;
               box-sizing: border-box;
               font-family: 'Rubik', 'Noto Sans TC';
               font-size: 28px;
               font-weight: 400;
               border: 0;
-              resize: none;
               padding: 0;
-              padding-top: 0;
+              line-height: 42px; //line-height與height同高以實現文字垂直置中
+              resize: none;
               @media screen and (max-width: 2560px) {
                 width: 170px;
                 height: 32px;
                 font-size: 22px;
+                line-height: 32px;
               }
               @media screen and (max-width: 1920px) {
                 width: 140px;
                 height: 22px;
                 font-size: 15px;
+                line-height: 22px;
               }
               @media screen and (max-width: 1366px) {
                 width: 130px;
                 height: 17px;
                 font-size: 12px;
+                line-height: 17px;
               }
               @media screen and (max-width: 768px) {
                 width: 100px;
@@ -463,6 +469,7 @@ export default {
                 width: 140px;
                 height: 20px;
                 font-size: 14px;
+                line-height: 20px;
               }
             }
           }
@@ -480,15 +487,17 @@ export default {
             background-color: $bg-white;
             border: 0;
             border-radius: 10px;
+            padding: 0;
             padding: {
-              top: 3px;
               right: 15px;
               left: 15px;
             }
+            line-height: 40px;
             resize: none;
             @media screen and (max-width: 2560px) {
               height: 32px;
               font-size: 22px;
+              line-height: 32px;
             }
             @media screen and (max-width: 1920px) {
               height: 22px;
@@ -497,25 +506,28 @@ export default {
                 left: 16px;
               };
               font-size: 15px;
+              line-height: 22px;
               border-radius: 6px;
             }
             @media screen and (max-width: 1366px) {
               height: 17px;
               font-size: 12px;
               border-radius: 4px;
+              line-height: 17px;
             }
             @media screen and (max-width: 768px) {
               height: 16px;
               font-size: 3px;
-              // font-size: 9px;
               padding: {
                 left: 10px;
               };
+              line-height: 16px;
             }
             @media screen and (max-width: 414px) {
               height: 19px;
               padding-top: 2px;
               font-size: 13px;
+              line-height: 19px;
             }
           }
         }
