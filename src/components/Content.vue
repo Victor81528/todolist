@@ -63,10 +63,9 @@ export default {
       }, 500)
     },
     textareaResize (e) {
+      e.target.style.height = 0 + 'px'
       const adjuste = e.target.scrollHeight
       if (adjuste > e.target.clientHeight) e.target.style.height = adjuste + 'px'
-      // console.log('scrollHeight:' + e.target.scrollHeight)
-      // console.log('clientHeight' + e.target.clientHeight)
     },
     updateItem (idGroup, idItem, e) {
       const item = e.target.value
@@ -77,12 +76,14 @@ export default {
       const item = e.target.value
       const pak = { idGroup, item }
       this.$store.commit('updateCache', pak)
-      console.log(item)
     },
     addItem (idGroup, e) {
       if (e.target.value) this.$store.commit('addItem', idGroup)
       e.preventDefault()
+      this.textareaResize(e)
     }
+  },
+  mounted () {
   }
 }
 </script>
@@ -456,9 +457,9 @@ export default {
               }
               @media screen and (max-width: 1366px) {
                 width: 130px;
-                height: 17px;
-                font-size: 12px;
-                line-height: 17px;
+                height: 19px;
+                font-size: 13px;
+                line-height: 19px;
               }
               @media screen and (max-width: 768px) {
                 width: 100px;
@@ -484,6 +485,7 @@ export default {
             width: 100%;
             height: 40px;
             font-size: 28px;
+            // box-sizing: border-box;
             background-color: $bg-white;
             border: 0;
             border-radius: 10px;
@@ -502,7 +504,6 @@ export default {
             @media screen and (max-width: 1920px) {
               height: 22px;
               padding: {
-                top: 3px;
                 left: 16px;
               };
               font-size: 15px;
@@ -510,10 +511,10 @@ export default {
               border-radius: 6px;
             }
             @media screen and (max-width: 1366px) {
-              height: 17px;
-              font-size: 12px;
+              height: 19px;
+              font-size: 13px;
               border-radius: 4px;
-              line-height: 17px;
+              line-height: 19px;
             }
             @media screen and (max-width: 768px) {
               height: 16px;
@@ -525,7 +526,6 @@ export default {
             }
             @media screen and (max-width: 414px) {
               height: 19px;
-              padding-top: 2px;
               font-size: 13px;
               line-height: 19px;
             }
