@@ -13,14 +13,14 @@
             <input type="checkbox" class="itemCheckbox" :class="item.id" @input="deleteItem(group.id, item.id, $event)">
             <span class="checkMark"><i class="fas fa-check"></i></span>
             <textarea class="itemInput" :class="item.id" :value="item.item"
-              @input="updateItem(group.id, item.id, $event),  textareaResize($event)">
+              @input="updateItem(group.id, item.id, $event), textareaResize($event)">
             </textarea>
           </label>
         </li>
         <div class="newItem">
           <textarea :value="group.itemCache"
             @input="updateCache(group.id, $event), textareaResize($event)"
-            @keypress.enter="addItem(group.id, $event)"
+            @keypress.enter="addItem(group.id, $event), textareaResize($event)"
             @blur="addItem(group.id, $event)">
           </textarea>
         </div>
@@ -44,9 +44,6 @@ export default {
     ])
   },
   methods: {
-    aaa (q) {
-      console.log(q)
-    },
     deleteGroup (idGroup) {
       this.$store.commit('deleteGroup', idGroup)
     },
@@ -78,12 +75,10 @@ export default {
       this.$store.commit('updateCache', pak)
     },
     addItem (idGroup, e) {
-      if (e.target.value) this.$store.commit('addItem', idGroup)
       e.preventDefault()
-      this.textareaResize(e)
+      if (e.target.value) this.$store.commit('addItem', idGroup)
+      document.getElementsByTagName('texta')
     }
-  },
-  mounted () {
   }
 }
 </script>
@@ -403,7 +398,7 @@ export default {
               @media screen and (max-width: 1366px) {
                 width: 17px;
                 height: 17px;
-                top: 0px;
+                top: 1px;
                 border-radius: 4px;
                 margin-right: 4px;
               }
@@ -485,7 +480,6 @@ export default {
             width: 100%;
             height: 40px;
             font-size: 28px;
-            // box-sizing: border-box;
             background-color: $bg-white;
             border: 0;
             border-radius: 10px;
