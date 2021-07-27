@@ -25,8 +25,6 @@ export default {
     ...mapState([
       'bgMode'
     ])
-  },
-  methods: {
   }
 }
 </script>
@@ -34,10 +32,6 @@ export default {
 <style lang="scss">
 body {
   background-color: $bg-white;
-}
-img {
-  width: 300px;
-  height: 500px;
 }
 #app {
   width: 100vw;
