@@ -32,6 +32,7 @@ export default {
   },
   setup (props) {
     const store = useStore()
+    
     const deleteItem = (idGroup, idItem, e) => {
       e.target.style.pointerEvents = 'none'
       const pak = { idGroup, idItem }

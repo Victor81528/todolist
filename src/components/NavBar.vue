@@ -17,30 +17,30 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { ref, computed } from 'vue'
+import { useStore } from 'vuex'
 
 export default {
   name: 'NavBar',
-  data () {
-    return {
-      open: false
+  setup () {
+    const store = useStore()
+    const open = ref(false)
+    const addGroup = () => {
+      store.commit('addGroup')
     }
-  },
-  computed: {
-    ...mapState([
-      'bgMode'
-    ])
-  },
-  methods: {
-    addGroup () {
-      this.$store.commit('addGroup')
-    },
-    openOption () {
-      this.open = !this.open
-    },
-    updateBgMode (mode) {
-      this.$store.commit('updateBgMode', mode)
-      this.open = !this.open
+    const openOption = () => {
+      open.value = !open.value
+    }
+    const updateBgMode = (mode) => {
+      store.commit('updateBgMode', mode)
+      openOption()
+    }
+    return {
+      bgMode: computed(() => store.state.bgMode),
+      open,
+      addGroup,
+      openOption,
+      updateBgMode
     }
   }
 }

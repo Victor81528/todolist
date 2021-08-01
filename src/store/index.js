@@ -11,23 +11,11 @@ export default createStore({
         list: [
           {
             id: 0,
-            item: '買8/9回嘉火車票'
+            item: 'item 1'
           },
           {
             id: 1,
-            item: '買奶油'
-          },
-          {
-            id: 2,
-            item: '回Kate email'
-          },
-          {
-            id: 3,
-            item: '讀完提問力'
-          },
-          {
-            id: 4,
-            item: '幫媽媽訂洗衣機'
+            item: 'item 2'
           }
         ]
       },
@@ -38,43 +26,27 @@ export default createStore({
         list: [
           {
             id: 0,
-            item: '保養機車'
+            item: 'item 1'
           },
           {
             id: 1,
-            item: '領包裹'
+            item: 'item 2'
           },
           {
             id: 2,
-            item: '買一條毛巾'
+            item: 'item 3'
           },
           {
             id: 3,
-            item: '禮拜二跟琬婷逛街'
+            item: 'item 4'
           },
           {
             id: 4,
-            item: '取消Apple TV+'
+            item: 'item 5'
           },
           {
             id: 5,
-            item: '皮夾送原廠保養'
-          },
-          {
-            id: 6,
-            item: '拿陶器給妹仔'
-          },
-          {
-            id: 7,
-            item: '買充電器收納袋'
-          },
-          {
-            id: 8,
-            item: '買保濕凝露'
-          },
-          {
-            id: 9,
-            item: '買眼藥水和口罩'
+            item: 'item 6'
           }
         ]
       }
