@@ -13,7 +13,6 @@ export default {
   },
   setup () {
     const store = useStore()
-    
     const updateTitle = (idGroup, e) => {
       const title = e.target.value
       const pak = { idGroup, title }

@@ -34,7 +34,6 @@ export default {
   },
   setup () {
     const store = useStore()
-
     const deleteGroup = (idGroup) => {
       store.commit('deleteGroup', idGroup)
     }

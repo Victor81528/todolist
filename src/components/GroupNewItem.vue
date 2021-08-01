@@ -19,7 +19,6 @@ export default {
   },
   setup () {
     const store = useStore()
-
     const textareaResize = (e) => {
       e.target.style.height = 0 + 'px'
       const adjuste = e.target.scrollHeight
